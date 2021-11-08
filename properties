@@ -49,6 +49,7 @@ local p = {
     "CanQuery",
     "Duration",
     "TeamColor",
+    "MembershipType",
 }
 
 return p
