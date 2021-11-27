@@ -1,4 +1,18 @@
 -- // Consists of Rejoin button. More to come
+local getasset = getsynasset or getcustomasset
+local requestfunc = syn and syn.request or http and http.request or http_request or fluxus and fluxus.request or getgenv().request or request
+local function getcustomassetfunc(path)
+    makefolder("engo")
+    makefolder("engo/assets")
+	if not isfile(path) then
+		local req = requestfunc({
+			Url = "https://raw.githubusercontent.com/joeengo/roblox/main/"..path:gsub("engo/assets", "assets"),
+			Method = "GET"
+		})
+		writefile(path, req.Body)
+	end
+	return getasset(path) 
+end
 
 -- // Insert Rejoin Button
 local ResetGameButtonButton = Instance.new("ImageButton")
@@ -39,9 +53,9 @@ ResetGameButtonHint.Parent = ResetGameButtonButton
 ResetGameButtonHint.AnchorPoint = Vector2.new(0.5, 0.5)
 ResetGameButtonHint.BackgroundTransparency = 1.000
 ResetGameButtonHint.Position = UDim2.new(0.150000006, 0, 0.474999994, 0)
-ResetGameButtonHint.Size = UDim2.new(0, 50, 0, 50)
+ResetGameButtonHint.Size = UDim2.new(0, 55, 0, 60)
 ResetGameButtonHint.ZIndex = 4
-ResetGameButtonHint.Image = "rbxassetid://8116728337"
+ResetGameButtonHint.Image = getcustomassetfunc("engo/assets/RejoinIcon.png")
 
 ResetGameButtonButton.MouseEnter:Connect(function() 
 	ResetGameButtonButton.Image = "rbxasset://textures/ui/Settings/MenuBarAssets/MenuButtonSelected.png"
@@ -60,4 +74,3 @@ game:GetService("UserInputService").InputEnded:Connect(function(input)
 		game:GetService("TeleportService"):Teleport(game.PlaceId)
 	end
 end)
--- // End of rejoin button code
