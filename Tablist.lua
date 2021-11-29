@@ -51,6 +51,9 @@ end
 if game:GetService("CoreGui"):FindFirstChild("PlayerList") then game.CoreGui.PlayerList:Destroy() end
 if game:GetService("CoreGui"):FindFirstChild("Tablist") then game:GetService("CoreGui").Tablist:Remove() end
 local name, desc = formatGameName()
+if desc == nil then 
+    desc = "Tablist found no description"
+end
 
 local Tablist = Instance.new("ScreenGui")
 Tablist.Enabled = false
