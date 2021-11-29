@@ -1,5 +1,7 @@
 -- // Very trash Universal Tablist, with support for bedwars (easy.gg)
 
+repeat wait() until game:IsLoaded()
+
 getgenv().tablistSettings = {
     KeyCode = Enum.KeyCode.Tab,
 }
