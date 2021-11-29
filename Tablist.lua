@@ -168,7 +168,7 @@ function createPlayer(player)
     Player.Name = player.DisplayName
     Player.Parent = PlayerList
     Player.BackgroundColor = player.TeamColor
-    Player.BackgroundTransparency = 0.75
+    Player.BackgroundTransparency = 0.55
     Player.BorderSizePixel = 0
     Player.Position = UDim2.new(0.146226421, 0, 0, 0)
     Player.Size = UDim2.new(0, 166, 0, 25)
