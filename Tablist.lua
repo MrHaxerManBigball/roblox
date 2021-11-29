@@ -1,9 +1,11 @@
--- // Very trash Universal Tablist, with support for bedwars (easy.gg)
+-- // Very trash "Universal" Tablist, with support for bedwars (easy.gg)
+-- // Made it bedwars only, if you want to make it universal change the settings on line 8
 
 repeat wait() until game:IsLoaded()
 
 getgenv().tablistSettings = {
     KeyCode = Enum.KeyCode.Tab,
+    BedwarsOnly = true
 }
 
 assert(not getgenv().tablist, "tablist has already been initialized")
@@ -16,6 +18,12 @@ function isBedwars()
         return true
     end
     return false
+end
+
+if tablistSettings.BedwarsOnly then
+    if game.PlaceId ~= 6872274481 then
+        return 
+    end
 end
 
 function getGameUniverseId()
