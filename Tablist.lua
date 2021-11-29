@@ -50,7 +50,15 @@ function formatGameName()
     return z,x
 end
 
-if game:GetService("CoreGui"):FindFirstChild("PlayerList") then game.CoreGui.PlayerList:Destroy() end
+spawn(function()
+    for i = 1, 5 do
+        pcall(function()
+            game:GetService("CoreGui"):WaitForChild("PlayerList"):Destroy()
+        end)
+        wait(0.25)
+    end
+end)    
+
 if game:GetService("CoreGui"):FindFirstChild("Tablist") then game:GetService("CoreGui").Tablist:Remove() end
 local name, desc = formatGameName()
 if desc == nil then 
