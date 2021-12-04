@@ -1,0 +1,11 @@
+
+AntiDecompiler.lua
+bedwarstable.lua
+.vscode/c_cpp_properties.json
+.vscode/tasks.json
+.vscode/launch.json
+CCRewrite.lua
+DecompilerBedwars.lua
+File.cpp
+lua.lua
+thing.lua

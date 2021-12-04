@@ -41,14 +41,8 @@ function getGameUniverseId()
 end
 
 function getGameName()
-    local req = requestfunc({
-        Url = "https://games.roblox.com/v1/games?universeIds="..getGameUniverseId(),
-        Method = "GET",
-    })
-    if req.StatusCode == 200 then 
-        local data = game:GetService("HttpService"):JSONDecode(req.Body)
-        return data["data"][1]["name"]
-    end
+    if isBedwars() then return game:GetService("MarketplaceService"):GetProductInfo(6872265039).Name end
+    return game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name
 end
 
 function formatGameName()
