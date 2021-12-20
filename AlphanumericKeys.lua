@@ -45,5 +45,4 @@ local a = {
     a["<"] = Enum.KeyCode.GreaterThan
     a[">"] = Enum.KeyCode.LessThan
     a[";"] = Enum.KeyCode.Semicolon
-
 return a
