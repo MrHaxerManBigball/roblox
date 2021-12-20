@@ -36,5 +36,14 @@ local a = {
     a["8"] = Enum.KeyCode.Eight
     a["9"] = Enum.KeyCode.Nine
     a["0"] = Enum.KeyCode.Zero
+    a["\"] = Enum.KeyCode.Backspace
+    a["/"] = Enum.KeyCode.Slash
+    a["."] = Enum.KeyCode.Period
+    a["-"] = Enum.KeyCode.Minus
+    a["+"] = Enum.KeyCode.Plus
+    a["="] Enum.KeyCode.Equals
+    a["<"] = Enum.KeyCode.GreaterThan
+    a[">"] = Enum.KeyCode.LessThan
+    a[";"] = Enum.KeyCode.Semicolon
 
 return a
