@@ -40,7 +40,8 @@ local a = {
     a["."] = Enum.KeyCode.Period
     a["-"] = Enum.KeyCode.Minus
     a["+"] = Enum.KeyCode.Plus
-    a["="] Enum.KeyCode.Equals
+    a["\"] = Enum.KeyCode.Backslash
+    a["="] = Enum.KeyCode.Equals
     a["<"] = Enum.KeyCode.GreaterThan
     a[">"] = Enum.KeyCode.LessThan
     a[";"] = Enum.KeyCode.Semicolon
