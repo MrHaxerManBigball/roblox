@@ -36,7 +36,6 @@ local a = {
     a["8"] = Enum.KeyCode.Eight
     a["9"] = Enum.KeyCode.Nine
     a["0"] = Enum.KeyCode.Zero
-    a["\"] = Enum.KeyCode.Backspace
     a["/"] = Enum.KeyCode.Slash
     a["."] = Enum.KeyCode.Period
     a["-"] = Enum.KeyCode.Minus
