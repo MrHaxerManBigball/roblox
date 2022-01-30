@@ -75,7 +75,7 @@ local AutoCanvasSize = {}
 		
 		-- updates the CanvasSize based on the amount of frames in the frame, along with
 		local function Update()
-			scroller.CanvasSize = UDim2.new(0,only_y and 0 or layout.AbsoluteContentSize.X,0,layout.AbsoluteContentSize.Y + 25)
+			scroller.CanvasSize = UDim2.new(0,only_y and 0 or layout.AbsoluteContentSize.X,0,layout.AbsoluteContentSize.Y + 135)
 		end
 		connections[scroller] = {
 			layout:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(Update),
