@@ -1,12 +1,17 @@
+local disabled
+function disable()
+  disabled = not disabled
+end
 
 function dragify(Frame)
 dragToggle = nil
-dragSpeed = .25 -- You can edit this.
+dragSpeed = .25
 dragInput = nil
 dragStart = nil
 dragPos = nil
 
 function updateInput(input)
+   if disabled then return end
 Delta = input.Position - dragStart
 Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + Delta.X, startPos.Y.Scale, startPos.Y.Offset + Delta.Y)
 game:GetService("TweenService"):Create(Frame, TweenInfo.new(.25), {Position = Position}):Play()
@@ -32,10 +37,11 @@ end
 end)
 
 game:GetService("UserInputService").InputChanged:Connect(function(input)
-if (input == dragInput and dragToggle) then
-updateInput(input)
-end
-end)
+    if (input == dragInput and dragToggle) then
+      updateInput(input)
+    end
+ end)
+  
 end
 
-return {Dragify = dragify, dragify = dragify}
+return {Dragify = dragify, dragify = dragify, disable = disable}
