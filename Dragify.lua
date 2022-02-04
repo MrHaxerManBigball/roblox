@@ -1,47 +1,79 @@
-local disabled
-function disable()
-  disabled = not disabled
-end
+function format(tbl) 
+    if tbl then
+        local oldtbl = tbl
+        local newtbl = {}
+        local formattedtbl = {}
 
-function dragify(Frame)
-dragToggle = nil
-dragSpeed = .25
-dragInput = nil
-dragStart = nil
-dragPos = nil
+        for option, v in next, oldtbl do
+            newtbl[option:lower()] = v
+        end
 
-function updateInput(input)
-   if disabled then return end
-Delta = input.Position - dragStart
-Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + Delta.X, startPos.Y.Scale, startPos.Y.Offset + Delta.Y)
-game:GetService("TweenService"):Create(Frame, TweenInfo.new(.25), {Position = Position}):Play()
-end
+        setmetatable(formattedtbl, {
+            __newindex = function(t, k, v)
+                rawset(newtbl, k:lower(), v)
+            end,
+            __index = function(t, k, v)
+                return newtbl[k:lower()]
+            end
+        })
 
-Frame.InputBegan:Connect(function(input)
-if (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) then
-dragToggle = true
-dragStart = input.Position
-startPos = Frame.Position
-input.Changed:Connect(function()
-if (input.UserInputState == Enum.UserInputState.End) then
-dragToggle = false
-end
-end)
-end
-end)
-
-Frame.InputChanged:Connect(function(input)
-if (input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch) then
-dragInput = input
-end
-end)
-
-game:GetService("UserInputService").InputChanged:Connect(function(input)
-    if (input == dragInput and dragToggle) then
-      updateInput(input)
+        return formattedtbl
+    else
+        return {}
     end
- end)
-  
 end
 
-return {Dragify = dragify, dragify = dragify, disable = disable}
+local dragutil = {}
+
+function dragutil.Start(frame, dragpart)
+    local api = {connections = {}}
+    local startPos
+    local dragToggle = nil
+    local dragSpeed = .25
+    local dragInput = nil
+    local dragStart = nil
+    local dragPos = nil
+    
+    function updateInput(input)
+        Delta = input.Position - dragStart
+        Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + Delta.X, startPos.Y.Scale, startPos.Y.Offset + Delta.Y)
+        game:GetService("TweenService"):Create(frame, TweenInfo.new(.25), {Position = Position}):Play()
+    end
+
+    api.connections[1] = dragpart.InputBegan:Connect(function(input)
+        if (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) then
+            dragToggle = true
+            dragStart = input.Position
+            startPos = frame.Position
+            input.Changed:Connect(function()
+                if (input.UserInputState == Enum.UserInputState.End) then
+                    dragToggle = false
+                end
+            end)
+        end
+    end)
+    
+    api.connections[2] = dragpart.InputChanged:Connect(function(input)
+        if (input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch) then
+            dragInput = input
+        end
+    end)
+    
+    api.connections[3] = game:GetService("UserInputService").InputChanged:Connect(function(input)
+        if (input == dragInput and dragToggle) then
+            updateInput(input)
+        end
+    end)
+
+    function api.End()
+        for i,v in next, api.connections do 
+            if v then 
+                v:Disconnect()
+            end
+        end
+        connections = {}
+    end
+
+    return api
+end
+return format(dragutil)
