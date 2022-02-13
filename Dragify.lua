@@ -25,11 +25,11 @@ end
 
 local dragutil = {}
 
-function dragutil.Start(frame, dragpart)
+function dragutil.Start(frame, dragpart, dspeed)
     local api = {connections = {}}
     local startPos
     local dragToggle = nil
-    local dragSpeed = .25
+    local dragSpeed = dspeed or .25
     local dragInput = nil
     local dragStart = nil
     local dragPos = nil
