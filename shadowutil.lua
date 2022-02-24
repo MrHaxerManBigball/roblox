@@ -21,6 +21,12 @@ local function setup(xdis, ydis, shadowcolor)
         else
             error("Invalid GuiInstance")
         end
+        
+        if pcall(function) local x=shadow.Text end) then 
+            instance:GetPropertyChangedSignal("Text"):connect(function() 
+                shadow.Text = instance.Text
+            end)
+        end
     end
     
     return {shadow = shadow}
