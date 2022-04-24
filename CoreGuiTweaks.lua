@@ -1,4 +1,6 @@
 -- // Consists of Rejoin button. More to come
+
+repeat task.wait() until game:IsLoaded()
 local getasset = getsynasset or getcustomasset
 local requestfunc = syn and syn.request or http and http.request or http_request or fluxus and fluxus.request or getgenv().request or request
 local function getcustomassetfunc(path)
@@ -74,3 +76,8 @@ game:GetService("UserInputService").InputEnded:Connect(function(input)
 		game:GetService("TeleportService"):Teleport(game.PlaceId)
 	end
 end)
+
+spawn(function() 
+    local chat = game.Players.LocalPlayer:WaitForChild("PlayerGui"):WaitForChild("Chat"):WaitForChild("Frame")
+    chat.Position = UDim2.new(0, 0, 0.1, 0)
+end)    
