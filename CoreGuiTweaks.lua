@@ -100,12 +100,14 @@ spawn(function()
     Y2 = tonumber(Y2)
     X2 = tonumber(X2)
     local chat = game.Players.LocalPlayer:WaitForChild("PlayerGui"):WaitForChild("Chat"):WaitForChild("Frame")
-    chat.Position = UDim2.new(X, X2, Y, Y2)
+    if shared.CustomChatSize then
+	chat.Position = UDim2.new(X, X2, Y, Y2)
     chat.ChatChannelParentFrame.Size = UDim2.new(0.5, 0, 1.2, -46)
     chat.ChatBarParentFrame.Size = UDim2.new(0.5, 0, 0, 42)
     chat.ChatBarParentFrame.Position = UDim2.new(0,0,1,10)
     chat.Draggable = true
     chat.Active = true
+			end
 
     repeat
 
