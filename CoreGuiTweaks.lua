@@ -78,6 +78,56 @@ game:GetService("UserInputService").InputEnded:Connect(function(input)
 end)
 
 spawn(function() 
+    local X, Y, X2, Y2 = 0, 0.676, 0, 0
+    if isfolder("engo/savedpositions") then 
+        if isfile("engo/savedpositions/chatX.txt") then
+            X = readfile("engo/savedpositions/chatX.txt")
+        end
+        if isfile("engo/savedpositions/chatY.txt") then
+            Y = readfile("engo/savedpositions/chatY.txt")
+        end
+        if isfile("engo/savedpositions/chatY2.txt") then 
+            Y2 = readfile("engo/savedpositions/chatY2.txt")
+        end
+        if isfile("engo/savedpositions/chatX2.txt") then 
+            X2 = readfile("engo/savedpositions/chatX2.txt")
+        end
+    else
+        makefolder("engo/savedpositions")
+    end
+    X = tonumber(X)
+    Y = tonumber(Y)
+    Y2 = tonumber(Y2)
+    X2 = tonumber(X2)
     local chat = game.Players.LocalPlayer:WaitForChild("PlayerGui"):WaitForChild("Chat"):WaitForChild("Frame")
-    chat.Position = UDim2.new(0, 0, 0.1, 0)
-end)    
+    chat.Position = UDim2.new(X, X2, Y, Y2)
+    chat.ChatChannelParentFrame.Size = UDim2.new(0.5, 0, 1.2, -46)
+    chat.ChatBarParentFrame.Size = UDim2.new(0.5, 0, 0, 42)
+    chat.ChatBarParentFrame.Position = UDim2.new(0,0,1,10)
+    chat.Draggable = true
+    chat.Active = true
+
+    repeat
+
+        if isfile("engo/savedpositions/chatY.txt") then 
+            delfile("engo/savedpositions/chatY.txt")
+        end
+        if isfile("engo/savedpositions/chatX.txt") then 
+            delfile("engo/savedpositions/chatX.txt")
+        end
+        if isfile("engo/savedpositions/chatY2.txt") then 
+            delfile("engo/savedpositions/chatY2.txt")
+        end
+        if isfile("engo/savedpositions/chatX2.txt") then 
+            delfile("engo/savedpositions/chatX2.txt")
+        end
+
+        writefile("engo/savedpositions/chatX.txt", tostring(chat.Position.X.Offset))
+        writefile("engo/savedpositions/chatY.txt", tostring(chat.Position.Y.Offset))
+        writefile("engo/savedpositions/chatX2.txt", tostring(chat.Position.X.Scale))
+        writefile("engo/savedpositions/chatY2.txt", tostring(chat.Position.Y.Scale))
+
+        task.wait(5)
+
+    until false == true
+end)     
