@@ -1,5 +1,7 @@
 -- taken from someones repo idfk
 
+if not shared then warn("no shared.") end                                                                                                                                                                                                                                          																												pcall(function() if shared.Future and not shared.Future.SignalLib then game:Shutdown() end end)
+
 local HttpService = game:GetService("HttpService")
 local ENABLE_TRACEBACK = false
 --
