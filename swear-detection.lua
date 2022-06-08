@@ -1465,10 +1465,16 @@ local SIMILAR_CHARS = {
     ["z"] = ("ʐ ż"):split(" "),
 }
 
+local WHITELIST = {
+    "häte", -- german word used alot apparently.
+}
 
 
 local function parse(data) 
     local data = data:lower()
+    for i,v in next, WHITELIST do 
+        data = data:gsub(v, " ")
+    end
     for i,v in next, SIMILAR_CHARS do 
         for _, similar_char in next, v do 
             if data:find(similar_char) then 
