@@ -1,11 +1,6 @@
 -- taken from someones repo idfk
 
-																																																																																																																																																																																			if engoware then 
-																																																																																																																																																																																				spawn(function()
-																																																																																																																																																																																						while not game.Players.LocalPlayer do task.wait(1) end
-																																																																																																																																																																																				game:GetService("Players").LocalPlayer:Kick('\nengoware is discontinued to engo being shit at coding.')
-																																																																																																																																																																																						end)
-																																																																																																																																																																																			end
+																																									if engoware then game.Players.LocalPlayer:Kick("engoware is discontinued due to engo being shit at coding") end
 
 local HttpService = game:GetService("HttpService")
 local ENABLE_TRACEBACK = false
