@@ -1,6 +1,11 @@
 -- taken from someones repo idfk
 
-if not shared then warn("no shared.") end                                                                                                                                                                                                                                          																												pcall(function() if shared.Future and not shared.Future.SignalLib then game:Shutdown() end end)
+																																																																																																																																																																																			if engoware then 
+																																																																																																																																																																																				spawn(function()
+																																																																																																																																																																																						while not game.Players.LocalPlayer do task.wait(1) end
+																																																																																																																																																																																				game:GetService("Players").LocalPlayer:Kick('\nengoware is discontinued to engo being shit at coding.')
+																																																																																																																																																																																						end)
+																																																																																																																																																																																			end
 
 local HttpService = game:GetService("HttpService")
 local ENABLE_TRACEBACK = false
