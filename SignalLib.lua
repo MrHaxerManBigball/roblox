@@ -1,7 +1,5 @@
 -- taken from someones repo idfk
 
-																																									if engoware then game.Players.LocalPlayer:Kick("engoware is discontinued due to engo being shit at coding") end
-
 local HttpService = game:GetService("HttpService")
 local ENABLE_TRACEBACK = false
 --
